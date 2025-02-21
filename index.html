@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Калькулятор теплоти згоряння</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        label, input { display: block; margin-bottom: 10px; }
+        button { margin-top: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Калькулятор теплоти згоряння</h2>
+    <label for="hp">Вміст водню HP (%):</label>
+    <input type="number" id="hp" value="3.7">
+    
+    <label for="cp">Вміст вуглецю C (%):</label>
+    <input type="number" id="cp" value="50.6">
+    
+    <label for="sp">Вміст сірки SP (%):</label>
+    <input type="number" id="sp" value="4.00">
+    
+    <label for="np">Вміст азоту NP (%):</label>
+    <input type="number" id="np" value="1.10">
+    
+    <label for="op">Вміст кисню OP (%):</label>
+    <input type="number" id="op" value="8.00">
+    
+    <label for="wp">Вміст вологи W (%):</label>
+    <input type="number" id="wp" value="13.0">
+    
+    <label for="ap">Вміст золи AP (%):</label>
+    <input type="number" id="ap" value="19.6">
+    
+    <button onclick="calculate()">Розрахувати</button>
+    <h3>Результати:</h3>
+    <p id="result"></p>
+    
+    <script>
+        function calculate() {
+            let hp = parseFloat(document.getElementById("hp").value);
+            let cp = parseFloat(document.getElementById("cp").value);
+            let sp = parseFloat(document.getElementById("sp").value);
+            let np = parseFloat(document.getElementById("np").value);
+            let op = parseFloat(document.getElementById("op").value);
+            let wp = parseFloat(document.getElementById("wp").value);
+            let ap = parseFloat(document.getElementById("ap").value);
+            
+            let krs = 100 / (100 - wp);
+            let krg = 100 / (100 - wp - ap);
+            
+            let hs = (hp * krs).toFixed(2);
+            let cs = (cp * krs).toFixed(2);
+            let ss = (sp * krs).toFixed(2);
+            let ns = (np * krs).toFixed(2);
+            let os = (op * krs).toFixed(2);
+            let as = (ap * krs).toFixed(2);
+            
+            let hg = (hp * krg).toFixed(2);
+            let cg = (cp * krg).toFixed(2);
+            let sg = (sp * krg).toFixed(2);
+            let ng = (np * krg).toFixed(2);
+            let og = (op * krg).toFixed(2);
+            
+            let qrh = (339 * cp + 1030 * hp - 108.8 * (op - sp) - 25 * wp).toFixed(2);
+            
+            document.getElementById("result").innerHTML =
+                `Коефіцієнт переходу від робочої до сухої маси: ${krs.toFixed(2)}<br>
+                Коефіцієнт переходу від робочої до горючої маси: ${krg.toFixed(2)}<br>
+                Склад сухої маси: H=${hs}%, C=${cs}%, S=${ss}%, N=${ns}%, O=${os}%, A=${as}%<br>
+                Склад горючої маси: H=${hg}%, C=${cg}%, S=${sg}%, N=${ng}%, O=${og}%<br>
+                Нижча теплота згоряння: ${qrh} МДж/кг`;
+        }
+    </script>
+</body>
+</html>
