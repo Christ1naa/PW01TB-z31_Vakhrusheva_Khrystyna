@@ -63,9 +63,9 @@
             let ng = (np * krg).toFixed(2);
             let og = (op * krg).toFixed(2);
             
-            let qrh = (339 * cp + 1030 * hp - 108.8 * (op - sp) - 25 * wp).toFixed(2);
-            let qds = (qrh * krs).toFixed(2);
-            let qdg = (qrh * krg).toFixed(2);
+            let qrh = (339 * cp + 1030 * hp - 108.8 * (op - sp) - 25 * wp + 0.025 * wp).toFixed(2);
+            let qds = ((parseFloat(qrh) + 0.025 * wp) * (100 / (100 - wp))).toFixed(2);
+            let qdg = ((parseFloat(qrh) + 0.025 * wp) * (100 / (100 - wp - ap))).toFixed(2);
             
             document.getElementById("result").innerHTML =
                 `Коефіцієнт переходу від робочої до сухої маси: ${krs.toFixed(2)}<br>
