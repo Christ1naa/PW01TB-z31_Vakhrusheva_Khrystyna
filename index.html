@@ -64,13 +64,17 @@
             let og = (op * krg).toFixed(2);
             
             let qrh = (339 * cp + 1030 * hp - 108.8 * (op - sp) - 25 * wp).toFixed(2);
+            let qdh = (qrh * krs).toFixed(2);
+            let qgh = (qrh * krg).toFixed(2);
             
             document.getElementById("result").innerHTML =
                 `Коефіцієнт переходу від робочої до сухої маси: ${krs.toFixed(2)}<br>
                 Коефіцієнт переходу від робочої до горючої маси: ${krg.toFixed(2)}<br>
                 Склад сухої маси: H=${hs}%, C=${cs}%, S=${ss}%, N=${ns}%, O=${os}%, A=${as}%<br>
                 Склад горючої маси: H=${hg}%, C=${cg}%, S=${sg}%, N=${ng}%, O=${og}%<br>
-                Нижча теплота згоряння: ${qrh} МДж/кг`;
+                Нижча теплота згоряння: ${qrh} МДж/кг<br>
+                Нижча теплота згоряння для сухої маси: ${qdh} МДж/кг<br>
+                Нижча теплота згоряння для горючої маси: ${qgh} МДж/кг`;
         }
     </script>
 </body>
